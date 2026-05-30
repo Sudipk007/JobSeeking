@@ -1,0 +1,30 @@
+{
+  "scraper": "both",
+  "headless": true,
+  "delay_between_actions_ms": 1500,
+
+  "qualifications": ["CCNA", "associate", "computer science", "networking", "cisco"],
+
+  "sites": {
+    "indeed": {
+      "base_url": "https://www.indeed.com/jobs",
+      "keywords": "CCNA associate degree computer science",
+      "max_items": 30
+    },
+    "linkedin": {
+      "base_url": "https://www.linkedin.com/jobs/search/",
+      "keywords": "CCNA associate degree computer science",
+      "max_items": 30
+    }
+  },
+
+  "email": {
+    "subject": "Job Listings Report — {date}",
+    "body": "Hi,\n\nAttached is the latest job report from {scraper}.\n\nTotal records: {count}\nGenerated: {date}\n\n-- AIWORKFLOW"
+  },
+
+  "output": {
+    "filename": "{scraper}_jobs_{date}.xlsx",
+    "directory": "output"
+  }
+}
