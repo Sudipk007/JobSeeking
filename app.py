@@ -131,13 +131,14 @@ class JobScraperApp(ctk.CTk):
                                fg_color=NAVY, hover_color=GOLD,
                                border_color=NAVY).pack(side="left", padx=(0, 20))
 
-        # Keywords
-        ctk.CTkLabel(card, text="Keywords / Qualifications",
+        # Job Title / Keywords
+        ctk.CTkLabel(card, text="Job Title / Keywords",
                      font=ctk.CTkFont(size=12, weight="bold"),
                      text_color="#555").pack(anchor="w", pady=(0, 2), **pad)
         default_kw = self._config.get("sites", {}).get("indeed", {}).get("keywords", "")
         self._keywords = ctk.CTkEntry(card, height=40, font=ctk.CTkFont(size=13),
-                                       border_color=NAVY, border_width=1)
+                                       border_color=NAVY, border_width=1,
+                                       placeholder_text="e.g. Software Engineer, CCNA, Data Analyst")
         self._keywords.insert(0, default_kw)
         self._keywords.pack(fill="x", pady=(0, 12), **pad)
 
@@ -219,7 +220,7 @@ class JobScraperApp(ctk.CTk):
         self._status.configure(text="⟳  Running…", text_color=GOLD)
         self._clear_log()
         self._append_log(f"Starting scraper: {cfg['scraper'].upper()}  |  City: {city}\n")
-        self._append_log(f"Keywords: {keywords}\n")
+        self._append_log(f"Job Title / Keywords: {keywords}\n")
         self._append_log("─" * 55 + "\n")
 
         # Redirect stdout → queue so print() from scrapers appears in the log
